@@ -1,7 +1,7 @@
 # model.py
 
 import pandas as pd
-import os  # Modul ini sengaja diimpor untuk menunjukkan error
+impor os  # Modul ini sengaja diimpor untuk menunjukkan error
 from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestClassifier
 
