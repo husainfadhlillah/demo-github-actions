@@ -1,0 +1,43 @@
+# Nama workflow yang akan muncul di tab Actions
+name: Python Code Quality Check
+
+# Pemicu: Kapan workflow ini harus dijalankan?
+# 'on' artinya 'pada saat'...
+on:
+  # ...ada 'push' (mengirim kode) ke branch "main"
+  push:
+    branches: [ "main" ]
+  # ...atau ada 'pull request' yang ditujukan ke branch "main"
+  pull_request:
+    branches: [ "main" ]
+
+# Daftar pekerjaan (jobs) yang harus dilakukan
+jobs:
+  # Nama pekerjaan kita: 'linter-check'
+  linter-check:
+    # Mesin virtual yang digunakan untuk menjalankan pekerjaan
+    runs-on: ubuntu-latest
+
+    # Urutan langkah-langkah (steps) yang dieksekusi
+    steps:
+      # Langkah 1: Mengunduh kode dari repositori ke mesin virtual
+      - name: Checkout repository code
+        uses: actions/checkout@v4
+
+      # Langkah 2: Menyiapkan lingkungan Python versi 3.10
+      - name: Set up Python 3.10
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.10"
+
+      # Langkah 3: Menginstal library yang dibutuhkan
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install flake8
+
+      # Langkah 4: Menjalankan linter (flake8) untuk memeriksa kode
+      - name: Run linter with flake8
+        run: |
+          # Perintah ini memeriksa semua file, mencari error, dan menampilkannya
+          flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
