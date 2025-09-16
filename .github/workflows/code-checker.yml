@@ -1,7 +1,7 @@
 # Nama workflow yang akan muncul di tab Actions
 name: Python Code Quality Check
 
-# Pemicu kapan workflow ini harus dijalankan?
+# Pemicu kapan workflow ini harus dijalankan
 on:
   push:
     branches: [ "main" ]
@@ -10,7 +10,7 @@ on:
 
 # Daftar pekerjaan (jobs) yang harus dilakukan
 jobs:
-  # Nama pekerjaan pertama: 'linter-check' (sama seperti tugas sebelumnya)
+  # Nama pekerjaan pertama: 'linter-check'
   linter-check:
     runs-on: ubuntu-latest
     steps:
@@ -27,7 +27,7 @@ jobs:
       - name: Run linter with flake8
         run: flake8
 
-  # Nama pekerjaan kedua: 'build-and-push-docker' (Pekerjaan baru untuk CD)
+  # Nama pekerjaan kedua: 'build-and-push-docker' (CD)
   build-and-push-docker:
     # Pekerjaan ini hanya akan dijalankan jika 'linter-check' berhasil
     needs: linter-check
