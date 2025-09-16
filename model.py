@@ -1,11 +1,7 @@
-# model.py
-
 import pandas as pd
-import os  # sudah diperbaiki
 from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestClassifier
 
-# Hapus import 'os' karena tidak digunakan
 
 def load_data(file_path):
     """Fungsi untuk memuat data dari CSV."""
@@ -18,7 +14,6 @@ def train_model(df):
     X = df[['feature1', 'feature2']]
     y = df['target']
     
-    # Perbaiki panjang baris dengan memisahkan argumen ke baris baru
     X_train, X_test, y_train, y_test = train_test_split(
         X, y, test_size=0.2, random_state=42
     )
